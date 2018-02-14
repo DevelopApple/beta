@@ -1,200 +1,104 @@
+<?php
+$magicword = "changeme"; //This lists all apps
+$applicationsfolder = "applications/";
+
+//////////////////////////////////////////////////////////////
+$appstolist = preg_split("/,/", $_GET["apps"]);
+require_once("libraries/load.php");
+require_once("functions.php");
+require_once("groups.php");
+if (isset($_GET["plist"])) {
+	generateiOSPlist($_GET["plist"]);
+	exit();
+}
+$appsFolders = scanDirBlacklist($applicationsfolder, array(".", ".."));
+$count = 0;
+$name = "";
+?>
 <!DOCTYPE html>
-<html>
-<!-------------------- title -------------------------------->
- <head>
-<title>Spring10</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/equinox.css">
-</head>
- 
-<body>
-<!-------------------- title --------------------------------> 
- <center>
-<div class="jumbotron">
-<img class= style="max-width:150px; width:50%;" src="assets/img/icon.png" />
-<h2 style="padding-top: 50px; opacity: 0.9">Spring10</h2>
-<p class="credits-top">Complete Jailbreak for A7-A9 devices on iOS 10.3-10.3.3 by DevelopApple <a class="twitter-link" href="https://twitter.com/DevelopApple">@DevelopApple</a></p>      </p>
-<br>
-<!----------------------------------------------------------------->
-  
-  
-  
-<!-------------------- button -------------------------------->
-<p class="lead">
-<a class="btn btn-primary btn-lg" href="https://goo.gl/FSKQHA" role="button">Download b1.1.3 </a>
-</p>
-<!----------------------------------------------------------------->
-  
-  
-  
-<!-------------------- Thanks to -------------------------------->
-<h2 style="padding-top: 50px; opacity: 0.9">Thanks to:</h2>
-<p>Isiguza (v0rtex) for kernel exploit<br>qwertyoruiop (yalu102) for kpp bypass<br>xerub for patchfinder<br> Sticktron (g0blin)
-    
-</ol>
- <!----------------------------------------------------------------->
- 
-</p>
-</div>
-</center>
-<div class="container">
-<div class="row">
-<div class="col-md-4 col-sm-12">
-<div class="card">
-<div class="card-body">
- 
- 
-<!--------------------Supported -------------------------------->
-<h2 style="padding-top: 50px; opacity: 0.9">Supported Devices</h2>
-<p>64-bit device running iOS 10.3-10.3.3<br>iPhone 5S (10.3-10.3.3)<br>iPhone 6/6 Plus (10.3-10.3.3)<br>iPhone 6S/6S Plus (10.3-10.3.3)<br>iPhone SE (10.3-10.3.3)<br>iPad Mini 3 (10.3-10.3.3)<br>iPad Mini 4 (10.3-10.3.3)<br>iPad Air 2 (10.3-10.3.3)<br>iPad Pro (10.3.3)
-</div>
-</div>
-<br>
-<!----------------------------------------------------------------->
- 
- 
-</div>
-<div class="col-md-4 col-sm-12">
-<div class="card">
-<div class="card-body">
- 
- 
-<!-------------------- Installation -------------------------------->
- 
-<h2 style="padding-top: 50px; opacity: 0.9">Installation</h2>
-<ol class="installation">
-<li>Turn off TouchID in Settings</li>
-<li>Download the Spring10.ipa file</li>  
-<li>Open Cydia Impactor and connect your device </li>
-<li>Drag the Spring.ipa file onto the Cydia Impactor window </li>
-<li>Enter your Apple ID (email and password) </li>
-<li>Open Settings → General → Profiles & Device Management </li>
-<li>Trust the new certificate → open Spring</li>
-<li>Tap 'Jailbreak' and enjoy!</li>     
-</ol>
- 
- <!----------------------------------------------------------------->
- 
- 
- 
-<!-------------------- Touch ID fix -------------------------------->  
-<h2 style="padding-top: 50px; opacity: 0.9">Touch ID fix</h2>
-<ol class="installation">
-<p>If Touch ID doesn’t work after Jailbreak with Spring10 try this:<br>
-<li>Reboot your Device </li>
-<li>Turn off TouchID in Settings</li>
-<li>Jailbreak your Device </li>
-<li>Turn on TouchID in Settings </li>
-</ol>
-  <!----------------------------------------------------------------->
- 
- 
-</div>
-</div>
-<br>
-</div>
-<div class="col-md-4 col-sm-12">
-<div class="card">
-<div class="card-body"> 
-   
- 
-<!-------------------- Changelogs -------------------------------->
- 
-<h2 style="padding-top: 50px; opacity: 0.9">Changelogs</h2>
- <!------------------------------v1.1.3---------------------------->  
- 
-<h2 style="padding-top: 50px; opacity: 0.9">v1.1.3</h2>
-<ol class="installation">
-<li>Added basic jailbreakd daemon</li>
-<li>Check to see if there is a new version of Spring10 available!(Thanks to CoolStar (Electra) </li>
-<li>Added "reset jailbreak" option. use this if you have any issues</li>
-<li>bug fixes</li>
- <li>fixes offset</li>
- 
-</ol>    
- 
-<!------------------------------v1.0.3---------------------------->  
- 
-<h2 style="padding-top: 50px; opacity: 0.9">v1.0.3</h2>
-<ol class="installation">
-<li>Fix Bootstrap</li>
-<li>Check to see if there is a new version of Spring10 available!(Thanks to CoolStar (Electra) </li>
-<li>Improved kernel / kpp code</li>
-<li>Add support for additional devices</li>
-</ol>
- 
- <!------------------------------v1.0.2---------------------------->
-     
-<h2 style="padding-top: 50px; opacity: 0.9">v1.0.2</h2>
-<ol class="installation">
-<li>Minor repairs</li>
-<li>isplay</li>
-<li>Fix page About</li>
-</ol>
- 
- <!-----------------------------v1.0.1------------------------------>
-    
-   
-<h2 style="padding-top: 50px; opacity: 0.9">v1.0.1</h2>
-<ol class="installation">
-<li>Add re-install bootstrap</li>
-<li>Improved stability and speed</li>
-<li>Add About</li>
-</ol>
- 
- <!--------------------------v1.0------------------------------->
- 
-<h2 style="padding-top: 50px; opacity: 0.9">v1.0</h2>
-<ol class="installation">
-<li>Official release</li>
-<li>new design+icon</li>
-</ol>
- 
-<!--------------------------b0.4.1--------------------------------->
- 
-<h2 style="padding-top: 50px; opacity: 0.9">b0.4.1</h2>
-<ol class="installation">
-<li>Fix Display Compatibility"<br>
-</ol>
- 
- <!----------------------b0.3.1----------------------------------->
- 
-<h2 style="padding-top: 50px; opacity: 0.9">b0.3.1</h2>
-<ol class="installation">
-<li>Fix Display Compatibilit "</li>
-<li>error correction "<br>
-</ol>
-      
- <!-------------------------b0.2.1------------------------------------->
- 
-<h2 style="padding-top: 50px; opacity: 0.9">b0.2.1</h2>
-<ol class="installation">
-<li>Change Icon and Display "<br>    
-</ol>
- 
- <!-------------------------b0.1.1----------------------------------->
- 
-<h2 style="padding-top: 50px; opacity: 0.9">b0.1.1</h2>
-<ol class="installation">
-<li>Fixing a problem that shows "device not support"</li>
-    
-</ol>
- <!----------------------------------------------------------------->      
-</div>
-</div>
-<br>
-</div>
-</div>
-</div>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Unc Inc App Installer</title>
+        <meta name="viewport" content="width=device-width" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <body class="browser-desktop">
+        <div id="container" class="container">
+                           <div class='new-ios'>
 
-<!-- JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-</body>
+                    <h1>Install Apps</h1>
 
+                    <p>If installation of an application fails, your device might not have been approved yet.</p>
+                   <p class="bordertop"></p>
+                    </div>
+                    <div style='clear:both;'><br/></div>
+                    <?php if (true) {
+                    		//TODO, hide on Android
+                     ?>
+        <div class="row">
+        <h2>iOS Apps</h2>
+            <?php if (disableIfNotiDevice() == "disabled") {?>
+        <p>Please visit this page on your smart device to start the installation.</p>
+<?php }
+
+foreach (getiOSApps($appsFolders, $applicationsfolder) as $app) :
+if(in_array($app["bundle"], $appstolist) || in_array($magicword, $appstolist)) {
+    $count = $count + 1;
+    if($count == 3) {
+        echo '</div><div class="row">';
+        $count = 0;
+    }
+    $name = $app["name"];
+?>
+        <div class="col-sm-4">
+                    <div class="version">
+                        <p class="borderbottom"></p>
+                        <h2><?php echo $app["name"]." (".$app["version"].")"; ?></h2>
+                        <h5><?php echo $app["bundle"]; ?></h5>
+                        <div style='clear:both;'></div>
+                        <a class="btn btn-info <?php echo disableIfNotiDevice();?>" role="button" href="itms-services://?action=download-manifest&amp;url=<?php echo urlencode("https://apps.uncinc.nl/?plist=".$app["filepath"]) ?>">Install Application</a>
+                    </div>
+        </div>
+<?php }
+endforeach;
+if ($count == 2) {
+    echo "</div>";
+}
+}
+if (disableIfNotiDevice() == "disabled") {
+?>
+        </div><div class="row">
+        <hr>
+        <h2>Android Apps</h2>
+<?php
+$count = 0;
+    foreach (getAndroidApps($appsFolders, $applicationsfolder) as $app) :
+        if(in_array($app["bundle"], $appstolist) || in_array($magicword, $appstolist)) {
+            $count = $count + 1;
+            if($count == 3) {
+                echo '</div><div class="row">';
+                $count = 0;
+            }
+            $name = $app["name"];
+?>
+        <div class="col-sm-4">
+                    <div class="version">
+                        <p class="borderbottom"></p>
+                        <h2><?php echo $app["name"]." (".$app["version"].")"; ?></h2>
+                        <h5><?php echo $app["bundle"]; ?></h5>
+                        <div style='clear:both;'></div>
+                        <a class="btn btn-info" role="button" href="<?php echo "https://apps.uncinc.nl/".$app["filepath"]; ?>">Download Application</a>
+                    </div>
+        </div>
+<?php }
+endforeach;
+if ($count == 2) {
+    echo "</div>";
+}
+}?>
+
+                </div>
+              </body>
 </html>
