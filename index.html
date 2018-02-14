@@ -1,104 +1,155 @@
-<?php
-$magicword = "changeme"; //This lists all apps
-$applicationsfolder = "applications/";
 
-//////////////////////////////////////////////////////////////
-$appstolist = preg_split("/,/", $_GET["apps"]);
-require_once("libraries/load.php");
-require_once("functions.php");
-require_once("groups.php");
-if (isset($_GET["plist"])) {
-	generateiOSPlist($_GET["plist"]);
-	exit();
-}
-$appsFolders = scanDirBlacklist($applicationsfolder, array(".", ".."));
-$count = 0;
-$name = "";
-?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Unc Inc App Installer</title>
-        <meta name="viewport" content="width=device-width" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </head>
-    <body class="browser-desktop">
-        <div id="container" class="container">
-                           <div class='new-ios'>
+  <head>
+    <title>Jailbreak without PC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="/CD_qGMIxQo9MPwYjeK0Z-lbRwnE.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/equinox-min.css">
+    <link rel="stylesheet" href="/custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+  </head>
+  <body>
 
-                    <h1>Install Apps</h1>
+    <nav class="navbar sticky-top navbar-light bg-light">
+      <a class="navbar-brand" href="https://ayouch.me">
+        <img src="https://blog.ayouch.me/assets/images/profile.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      </a>
+    </nav>
+    <div class="container-fluid">
+      <div class="container center" >
 
-                    <p>If installation of an application fails, your device might not have been approved yet.</p>
-                   <p class="bordertop"></p>
-                    </div>
-                    <div style='clear:both;'><br/></div>
-                    <?php if (true) {
-                    		//TODO, hide on Android
-                     ?>
-        <div class="row">
-        <h2>iOS Apps</h2>
-            <?php if (disableIfNotiDevice() == "disabled") {?>
-        <p>Please visit this page on your smart device to start the installation.</p>
-<?php }
-
-foreach (getiOSApps($appsFolders, $applicationsfolder) as $app) :
-if(in_array($app["bundle"], $appstolist) || in_array($magicword, $appstolist)) {
-    $count = $count + 1;
-    if($count == 3) {
-        echo '</div><div class="row">';
-        $count = 0;
-    }
-    $name = $app["name"];
-?>
-        <div class="col-sm-4">
-                    <div class="version">
-                        <p class="borderbottom"></p>
-                        <h2><?php echo $app["name"]." (".$app["version"].")"; ?></h2>
-                        <h5><?php echo $app["bundle"]; ?></h5>
-                        <div style='clear:both;'></div>
-                        <a class="btn btn-info <?php echo disableIfNotiDevice();?>" role="button" href="itms-services://?action=download-manifest&amp;url=<?php echo urlencode("https://apps.uncinc.nl/?plist=".$app["filepath"]) ?>">Install Application</a>
-                    </div>
-        </div>
-<?php }
-endforeach;
-if ($count == 2) {
-    echo "</div>";
-}
-}
-if (disableIfNotiDevice() == "disabled") {
-?>
-        </div><div class="row">
-        <hr>
-        <h2>Android Apps</h2>
-<?php
-$count = 0;
-    foreach (getAndroidApps($appsFolders, $applicationsfolder) as $app) :
-        if(in_array($app["bundle"], $appstolist) || in_array($magicword, $appstolist)) {
-            $count = $count + 1;
-            if($count == 3) {
-                echo '</div><div class="row">';
-                $count = 0;
-            }
-            $name = $app["name"];
-?>
-        <div class="col-sm-4">
-                    <div class="version">
-                        <p class="borderbottom"></p>
-                        <h2><?php echo $app["name"]." (".$app["version"].")"; ?></h2>
-                        <h5><?php echo $app["bundle"]; ?></h5>
-                        <div style='clear:both;'></div>
-                        <a class="btn btn-info" role="button" href="<?php echo "https://apps.uncinc.nl/".$app["filepath"]; ?>">Download Application</a>
-                    </div>
-        </div>
-<?php }
-endforeach;
-if ($count == 2) {
-    echo "</div>";
-}
-}?>
+        <div id="projects" class="container">
+          <h5 class="center title" style="letter-spacing:2px;margin-top: 10%;">Jailbreaks</h5>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <div class="card">
+                <img class="card-img-top img-fluid"  src="https://i.imgur.com/QMV20os.png" alt="Logo">
+                <div class="card-body">
+                  <h4 class="card-title">Electra b9</h4>
+                  <span class="badge badge-info">iOS 11 to 11.1.2 </span>
+                  <p class="card-text">64-bit devices only.</p>
+                  <a href="itms-services://?action=download-manifest&url=https://ayouch.me/electra.plist" target="_blank" class="btn btn-primary">
+                  Install</a>
+                 <!-- next one -->
+                </div>
+              </div>
+              <br>
+            </div>
+          <div class="col-md-4 col-sm-12">
+              <div class="card">
+                <img class="card-img-top img-fluid"  src="https://i.imgur.com/a9txNeU.png" alt="Logo">
+                <div class="card-body">
+                  <h4 class="card-title">G0blin</h4>
+                  <span class="badge badge-info">iOS 10 to 10.3.3 </span>
+                  <p class="card-text">64-bit devices only.</p>
+                  <a href="itms-services://?action=download-manifest&url=https://ayouch.me/g0blin.plist" target="_blank" class="btn btn-primary">
+                  Install</a>
+			<!-- next one -->
 
                 </div>
-              </body>
+              </div>
+              <br>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="card">
+                <img class="card-img-top img-fluid"  src="https://i.imgur.com/znIFhl0.png" alt="Logo">
+                <div class="card-body">
+                  <h4 class="card-title">Saigon JB</h4>
+                  <span class="badge badge-info">iOS 10.2.1</span>
+                  <p class="card-text">
+                    <ul>
+                      <li>iPad Air (Cellular) (10.2)</li>
+                      <li>iPhone 5S (10.2.1) (not tested)</li>
+                      <li>iPhone SE (10.2.1) (not tested)</li>
+                      <li>iPhone 6/Plus (10.2.1)</li>
+                      <li>iPhone 6s/Plus (10.2.1) (not tested)</li>
+                      <li>iPhone 6 (10.3.x) (not yet)</li>
+                      </ul>
+                  </p>
+                  <a href="https://is.gd/3DSNLj" class="btn btn-primary">Install</a>
+		      <!-- next one -->
+
+                </div>
+              </div>
+              <br>
+            </div>   
+        <div class="col-md-4 col-sm-12">
+              <div class="card">
+                <img class="card-img-top img-fluid"  src="https://i.imgur.com/72hqTgK.png" alt="Logo">
+                <div class="card-body">
+                  <h4 class="card-title">Yalu Beta 7</h4>
+                  <span class="badge badge-info">iOS 10.0 → 10.2</span>
+                  <p class="card-text">64 bit devices except iPhone 7.</p>
+                  <a href="itms-services://?action=download-manifest&url=https://ayouch.me/install.plist" target="_blank" class="btn btn-primary">Install</a>
+			<!-- next one -->
+
+                </div>
+              </div>
+              <br>
+            </div>
+        <div class="col-md-4 col-sm-12">
+              <div class="card">
+                <img class="card-img-top img-fluid"  src="https://i.imgur.com/68cFaJX.png" alt="Logo">
+                <div class="card-body">
+                  <h4 class="card-title">Pangu</h4>
+                  <span class="badge badge-info">iOS 9.2 → 9.3.3</span>
+                  <p class="card-text">64-bit devices only.</p>
+                  <a href="https://is.gd/B6xBBC" class="btn btn-primary">Install</a>
+			<!-- next one -->
+
+                </div>
+              </div>
+              <br>
+          </div>
+		 <div class="col-md-4 col-sm-12">
+              <div class="card">
+                <img class="card-img-top img-fluid"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_corazón.svg/1200px-Heart_corazón.svg.png" alt="Logo">
+                <div class="card-body">
+                  <h4 class="card-title">SHOW SOME LOVE</h4>
+                  <p class="card-text">Help keeping up the website by considering a small donation
+
+</p>
+                  <a href="https://buymeacoff.ee/ayouch" target="_blank" class="btn btn-primary">DONATE</a>
+
+                  
+
+                </div>
+              </div>
+              <br>
+            </div>
+            
+
+          </div>
+        </div>
+
+      </div>
+
+      <nav class="navbar sticky-bottom navbar-expand-lg navbar-light">
+        <span class="navbar-text">
+          <p>
+            © YASSINE AYOUCH 
+		   
+		  <a href="https://twitter.com/yassineayouch" class="twitter-follow-button" data-show-count="false">Follow @yassineayouch</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </p>
+        </span>
+      </nav>
+    
+
+   
+   
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="/smooth-scroll.min.js"></script>
+    <script>
+      var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+    </script>
+  </body>
 </html>
